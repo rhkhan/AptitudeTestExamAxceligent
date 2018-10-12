@@ -1,0 +1,8 @@
+        It is an async method with an await keyword. method contains 3 parameters. first two is of long type, and the
+         third parameter is of boolean type.
+         The async method contains following input parameters: 
+         1st input parameter: averageSalary, type: long
+         2nd input parameter: numberOfEmployee, type: long
+         3rd input parameter: type: boolean
+
+         The method will return true if averageSalary is equal to the numberOfEmployee and false otherwise
