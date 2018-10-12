@@ -1,0 +1,6 @@
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\bin\Debug\SumOfBiggestNeighbor.exe.config
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\obj\Debug\SumOfBiggestNeighbor.csprojResolveAssemblyReference.cache
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\bin\Debug\SumOfBiggestNeighbor.exe
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\bin\Debug\SumOfBiggestNeighbor.pdb
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\obj\Debug\SumOfBiggestNeighbor.exe
+E:\Rubel_Necessaries\learning\AptitudeTest_Axceligent\SumOfBiggestNeighbor\SumOfBiggestNeighbor\obj\Debug\SumOfBiggestNeighbor.pdb
