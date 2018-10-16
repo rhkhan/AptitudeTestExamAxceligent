@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSettings
 {
@@ -11,43 +6,48 @@ namespace AlexaSettings
     {
         static void Main(string[] args)
         {
+           var alexa = new Alexa();
+            Console.WriteLine(alexa.Talk()); //print hello, i am Alexa
+
+            //delegate as a parameter of a method
+            alexa.Configure(x=>
+            {
+                x.GreetingMessage = "Hello {OwnerName}, I'm at your service";
+                x.OwnerName = "Bob Marley";
+            });
+
+            Console.WriteLine(alexa.Talk()); //print Hello Bob Marley, I'm at your service
+
+            Console.WriteLine("press any key to exit ...");
+            Console.ReadKey();
         }
     }
 
-
-    public class Alexa : ConfigurationSection
+    delegate void delConfigureAlexa(Alexa a); // declare the delegate
+    public class Alexa
     {
-        [ConfigurationProperty("greetingmsg", DefaultValue = "hello, i am Alexa")]
-        public string GreeetingMessage
-        {
-            get
-            {
-                return (string)this["greetingmsg"];
-            }
-            set
-            {
-                this["greetingmsg"] = value;
-            }
+        public string GreetingMessage = "hello, i am Alexa";
+        public string OwnerName;
+
+        public string Talk(){
+            var result = GreetingMessage.Replace("{OwnerName}", OwnerName);
+            return result;
         }
 
-        [ConfigurationProperty("ownername")]
-        public string OwnerName
+        internal void Configure(delConfigureAlexa d)
         {
-            get
-            {
-                return (string)this["ownername"];
-            }
-            set
-            {
-                this["ownername"] = value;
-            }
-        }
+            Alexa a = new Alexa();
 
-        public string Talk()
-        {
-            return GreeetingMessage;
-        }
+            //invoke the delegate, after invoking the delegate it assigns the class variable 
+            //with new values inside delegate,string interpolation variable is replaced with
+            //the desired value
+            d.Invoke(a);
 
+            //newly assigned values of class variable is then set to class variable
+            //so that updated values can be accessed inside the Talk()
+            GreetingMessage = a.GreetingMessage;
+            OwnerName = a.OwnerName;
+        }
     }
 
 }
