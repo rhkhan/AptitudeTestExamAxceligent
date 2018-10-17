@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace SumOfBiggestNeighbor
@@ -32,7 +32,7 @@ namespace SumOfBiggestNeighbor
             List<int> nList = new List<int>();
             for (int i = 0; i < input.Length; i++)
             {
-                if (numberDictionary.ContainsKey(input[i]))
+                if (numberDictionary[input[i]]>=max-1)
                 {
                     nList.Add(input[i]);
                 }
@@ -42,25 +42,39 @@ namespace SumOfBiggestNeighbor
             int biggestCombination = int.MinValue; // to store biggest combination
             int pos = 0;
 
-            for (int i = 0; i < nList.Count - 1; i++)
+            for(int i = 0; i < nList.Count - 1; i++)
             {
                 pos = i;
-                if (nList[i] == nList[i + 1])
+                if (nList[i] == nList[i + 1]) //check combination of neighbor element 
                     sum += nList[i];
                 else
                 {
-                    sum += nList[i];
-                    if (sum > biggestCombination)
+                    sum += nList[i]; //add the index value because it is equal to the recent last
+                    if (sum > biggestCombination) // get biggestCombination so far
                         biggestCombination = sum;
-                    sum = 0;
+                    // after getting the latest biggest combination reinitialize the sum 
+                    // to get the next biggest combination if any
+                    sum = 0; 
                 }
             }
 
-            if (nList[pos] == nList[pos + 1] && pos + 1 == nList.Count - 1)
+            // To check if the last index value is equal to the previous last index value
+            // If they are equal then add the last index value with the sum
+            // to get the biggest combination.
+            if (nList[pos] == nList[pos + 1]) //pos + 1 == nList.Count - 1
+            {
                 sum += nList[pos + 1];
+                if (sum > biggestCombination) // final adjustment, if last index value is equal to the previous last and added to sum
+                    biggestCombination = sum;
+            }
+            else
+            { //If they are not equal then put the last index value to sum;
+              //because last index value can be individually the biggest.
+                sum = nList[pos + 1];
+                if (sum > biggestCombination) // final adjustment, if last index value is individually the greatest
+                    biggestCombination = sum;
+            }
 
-            if (sum > biggestCombination) // final adjustment
-                biggestCombination = sum;
 
             return biggestCombination;
         }
